@@ -2,18 +2,16 @@
 
 z is a JavaScript library to create HTML elements.
 
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
-
-Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
-
 > A ideia básica é criar elementos no cliente
 > dispensando o servidor de processar respostas em html. 
 > Cada cliente é responsável por gerar sua interface com o usuário.
 > Assim uma api fornece apenas os dados.
 
-This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
+> The basic idea is to set the client information
+> Eliminating the server to process responses in html.
+> Each client is responsible for generating its user interface.
+> Once an api provides only the data.
+
 
 ### Version
 1.0.0
@@ -24,7 +22,9 @@ This text you see here is *actually* written in Markdown! To get a feel for Mark
 que o React também. Mas em nenhum dos dois casos a forma implementada me agradaram.
 Não gostei da ideia de colocar tags html no retorno.
 
-It's possible to use the jQuery method HTML to make the same, and recently, I figure it out that React do it also. I did not liked the idea of put HTML tags in the return.
+It's possible to use the jQuery method HTML to make the same, and recently, 
+I figure it out that React do it also. 
+I did not liked the idea of put HTML tags in the return.
 
 ## Examples Jquery
 
@@ -61,6 +61,8 @@ z.append(document.body, container);
 ```
 
 E se eu quisesse criar várias divs com textos diferentes, faria um metodo:
+
+And if I wanted to create multiple divs with different texts, would make a method:
 
 ```js
 var createDiv = function(class, text) {
@@ -103,8 +105,6 @@ MIT
 
 
 **Free Software, Hell Yeah!**
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
    [React]: <https://facebook.github.io/react/>
    [jQuery]: <http://api.jquery.com/html/>
