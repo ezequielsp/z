@@ -51,24 +51,29 @@ This example will render "Hello John" into a container on the page.
 ## Examples Z
 
 ```js
+var container = z.create('div', [['id', 'container']]);
+
 var div = z.create('div');
-    div.val("Hello John");
-  
-z( "#container" ).append(div);
+    z.val(div, "Hello John");
+
+z.append(container, div);
+z.append(document.body, container);
 ```
 
 E se eu quisesse criar várias divs com textos diferentes, faria um metodo:
 
 ```js
 var createDiv = function(class, text) {
-    var div = z.create('div', [['className':class]]);
-        div.val(text);
+    var div = z.create('div', [['className', class]]);
+        z.val(div, text);
     
     return div;
 }
 
 var div = z.createDiv("otheCommentBox", "Hello, world! I am a Other CommentBox");
-z( "div" ).append(div);
+var container = z.create('div', [['id', 'container']]);
+z.append(container, div);
+z.append(document.body, container);
 ```
 
 
