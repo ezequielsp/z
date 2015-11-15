@@ -14,7 +14,7 @@ z is a JavaScript library to create HTML elements.
 
 
 ### Version
-1.0.0
+0.0.1
 
 ### Tech
 
@@ -90,6 +90,20 @@ Download and use.
 ```html
 <!-- The core React library -->
 <script src="path/to/file/z.min.js"></script>
+```
+
+## Creating Bootstrap Buttons
+
+```js
+var btn = z.btn(['btn btn-primary', 'Click Me!']);
+          z.attr(btn, [['onclick', "alert('Hello world!')"]]);
+          z.attr(btn, [['data-reserv-id', 33]]);
+
+z.append(document.body, btn);
+
+var save = z.btn(['btn btn-primary', 'Salvar']);
+           z.attr(save, [['id', 'btnEdit']]);
+z.append(document.body, save);
 ```
 
 
