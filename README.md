@@ -106,8 +106,13 @@ MIT
 
 **Free Software, Hell Yeah!**
 
+### Kudos
+
+* [Underscore] - All kudos.
+
    [React]: <https://facebook.github.io/react/>
    [jQuery]: <http://api.jquery.com/html/>
+   [Underscore]: <http://underscorejs.org/>
    
 
 
