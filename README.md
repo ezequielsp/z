@@ -51,29 +51,10 @@ This example will render "Hello John" into a container on the page.
 ## Examples Z
 
 ```js
-var container = z.create('div', [['id', 'container']]);
+var container = z.create('div', {'attr': {'id': 'container'}});
 
-var div = z.create('div');
-    z.val(div, "Hello John");
+var div = z.create('div', {'text': "Hello John"});
 
-z.append(container, div);
-z.append(document.body, container);
-```
-
-E se eu quisesse criar várias divs com textos diferentes, faria um metodo:
-
-And if I wanted to create multiple divs with different texts, would make a method:
-
-```js
-var createDiv = function(class, text) {
-    var div = z.create('div', [['className', class]]);
-        z.val(div, text);
-    
-    return div;
-}
-
-var div = z.createDiv("otheCommentBox", "Hello, world! I am a Other CommentBox");
-var container = z.create('div', [['id', 'container']]);
 z.append(container, div);
 z.append(document.body, container);
 ```
@@ -95,15 +76,29 @@ Download and use.
 ## Creating Bootstrap Buttons
 
 ```js
-var btn = z.btn(['btn btn-primary', 'Click Me!']);
-          z.attr(btn, [['onclick', "alert('Hello world!')"]]);
-          z.attr(btn, [['data-reserv-id', 33]]);
+var body = document.body;
 
-z.append(document.body, btn);
+var btn = z.create('button', {
+  'attr': {'id': 'btn-edit', 
+    'class': 'btn btn-success', 
+    'type': 'button', 
+    'onclick': "alert('Hello world!')",
+    'data-reserv-id': 33
+  },
+  'text': 'Click Me!'
+});
 
-var save = z.btn(['btn btn-primary', 'Salvar']);
-           z.attr(save, [['id', 'btnEdit']]);
-z.append(document.body, save);
+body.appendChild(btn);
+
+var save = z.create('button', {
+  'attr': {
+    'class': 'btn btn-primary', 
+    'type': 'button'
+  },
+  'text': 'Salvar'
+});
+
+body.appendChild(save);
 ```
 
 
