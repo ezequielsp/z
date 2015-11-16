@@ -179,6 +179,26 @@ and <code>exports</code> are not HTML elements.)</p>
               
             </div>
             
+            <div class="content"><div class='highlight'><pre>
+	z.getScript = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">source, callback</span>)
+	</span>{
+    	<span class="hljs-keyword">var</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'script'</span>);
+    	<span class="hljs-keyword">var</span> prior = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">'script'</span>)[<span class="hljs-number">0</span>];
+    	script.async = <span class="hljs-number">1</span>;
+    	prior.parentNode.insertBefore(script, prior);
+
+    	script.onload = script.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> _, isAbort </span>) </span>{
+        	<span class="hljs-keyword">if</span>(isAbort || !script.readyState || <span class="hljs-regexp">/loaded|complete/</span>.test(script.readyState) ) {
+            	script.onload = script.onreadystatechange = <span class="hljs-literal">null</span>;
+            	script = <span class="hljs-literal">undefined</span>;
+
+            	<span class="hljs-keyword">if</span>(!isAbort) { <span class="hljs-keyword">if</span>(callback) callback(); }
+        	}
+    	};
+
+    	script.src = source;
+	}</pre></div></div>
+            
         </li>
         
         
@@ -210,19 +230,20 @@ and <code>exports</code> are not HTML elements.)</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	z.create = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>)
+            <div class="content"><div class='highlight'><pre>	z.create = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">newEl, obj</span>)
 	</span>{
-		<span class="hljs-keyword">if</span>(z.isObject(obj))
-		{
-			<span class="hljs-keyword">var</span> newEl = obj[<span class="hljs-number">0</span>];
-		} <span class="hljs-keyword">else</span> {
-			<span class="hljs-keyword">var</span> newEl = obj;
-		}
-
+		obj = obj || {};
 		<span class="hljs-keyword">var</span> el = <span class="hljs-built_in">document</span>.createElement(newEl);
 
-		<span class="hljs-keyword">if</span>(obj[<span class="hljs-number">1</span>]) {
-			z.attr(el, obj[<span class="hljs-number">1</span>]);
+		<span class="hljs-keyword">if</span>(obj.hasOwnProperty(<span class="hljs-string">'attr'</span>)) {
+			<span class="hljs-keyword">for</span> (a <span class="hljs-keyword">in</span> obj.attr) {
+				el.setAttribute(a, obj.attr[a]);
+			}
+		}
+
+		<span class="hljs-keyword">if</span>(obj.hasOwnProperty(<span class="hljs-string">'text'</span>)) {
+			<span class="hljs-keyword">var</span> t = <span class="hljs-built_in">document</span>.createTextNode(obj.text);
+				el.appendChild(t);
 		}
 
 		<span class="hljs-keyword">return</span> el;
@@ -323,13 +344,20 @@ and <code>exports</code> are not HTML elements.)</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <p>Append a child to an element.</p>
+              <p>Append a child to an element or elements array.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>	z.append = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">el, child</span>)
 	</span>{
-		el.appendChild(child);
+		<span class="hljs-keyword">if</span>(child.length &gt; <span class="hljs-number">1</span>) {
+			<span class="hljs-keyword">for</span>(i <span class="hljs-keyword">in</span> child) {
+				el.appendChild(child[i]);
+			}
+		} <span class="hljs-keyword">else</span> {
+			el.appendChild(child);
+		}
+		
 	};</pre></div></div>
             
         </li>
